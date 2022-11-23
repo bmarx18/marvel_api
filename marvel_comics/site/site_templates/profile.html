@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+{% with mesages = get_flashed_messages(with_categories = true) %}
+    {% if messages %} 
+        {% for cat, msg in messages %} 
+            {% if cat == 'auth-success' %} 
+                <div class="containter">
+                    {{ msg }}
+                    <button type ="button" class="close" data-dismiss = "alert", onclick="this.parentElement.style.display='none'">&times;</button>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endwith %}  
+<header class="hero-section">
+    <h3 class="header-text">Welcome to the Marvel Universe!</h3>
+</header>
+
+<div class="container">
+    <h3>Here are your porfile details:</h3>
+    <ul class="list-group">
+        <li class="list-group-item">Email: {{ current_user.email }}</li>
+        <li class="list-group-item">Token: {{ current_user.token }}</li>
+    </ul>
+</div>
+
+{% endblock content %}
